@@ -1,4 +1,4 @@
-package com.Ecom_Hamza.ecommerce.entity.dao;
+package com.Ecom_Hamza.ecommerce.dao;
 
 import com.Ecom_Hamza.ecommerce.entity.ProductCategory;
 import org.springframework.data.jpa.repository.JpaRepository;
