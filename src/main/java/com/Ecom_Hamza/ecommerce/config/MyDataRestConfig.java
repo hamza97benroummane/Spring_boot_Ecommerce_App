@@ -1,7 +1,9 @@
 package com.Ecom_Hamza.ecommerce.config;
 
+import com.Ecom_Hamza.ecommerce.entity.Country;
 import com.Ecom_Hamza.ecommerce.entity.Product;
 import com.Ecom_Hamza.ecommerce.entity.ProductCategory;
+import com.Ecom_Hamza.ecommerce.entity.State;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.metamodel.EntityType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,19 +35,24 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
         HttpMethod[] theUnsupprtedActions = {HttpMethod.PUT, HttpMethod.POST, HttpMethod.DELETE};
 
         // disable HTTP method put ,Post, Delete For Product
-        config.getExposureConfiguration()
-                .forDomainType(Product.class)
-                .withItemExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupprtedActions) )
-                .withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupprtedActions));
-
+        disableHttpMethods(Product.class ,config, theUnsupprtedActions);
         // disable HTTP method put ,Post, Delete for ProductCategory
-        config.getExposureConfiguration()
-                .forDomainType(ProductCategory.class)
-                .withItemExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupprtedActions) )
-                .withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupprtedActions));
+        disableHttpMethods(ProductCategory.class ,config, theUnsupprtedActions);
+
+        // disable HTTP method put ,Post, Delete For Country
+        disableHttpMethods(Country.class ,config, theUnsupprtedActions);
+        // disable HTTP method put ,Post, Delete For State
+        disableHttpMethods(State.class ,config, theUnsupprtedActions);
 
         // call an internal helper method
         exposeIds(config);
+    }
+
+    private void disableHttpMethods(Class theClass ,RepositoryRestConfiguration config, HttpMethod[] theUnsupprtedActions) {
+        config.getExposureConfiguration()
+                .forDomainType(theClass)
+                .withItemExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupprtedActions) )
+                .withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupprtedActions));
     }
 
     private void exposeIds(RepositoryRestConfiguration config) {
