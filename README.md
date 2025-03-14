@@ -16,9 +16,9 @@ This is the backend of a Full Stack web application developed using **Spring Boo
 - **Spring Security** (for authentication & authorization)
 - **Spring Data JPA** (for database interactions)
 - **Hibernate** (ORM framework)
-- **MySQL / PostgreSQL** (Database)
+- **MySQL ** (Database)
 - **Maven** (for dependency management)
-- **IntelliJ IDEA / Eclipse** (Development Environment)
+- **IntelliJ IDEA ** (Development Environment)
 
 ## Setup Instructions
 ### Clone the Repository
